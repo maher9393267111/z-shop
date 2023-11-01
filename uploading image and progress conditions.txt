@@ -1,0 +1,28 @@
+iza ande loading y3ne spinner
+
+{loadingImage ? () : () }
+
+two boxes
+
+if i am uploading image ? (progress % && spinner loading) : (userImage from firebase/storage)
+
+                                                            imageAsset ? userImage : avatar
+
+
+setImageLoading (false) tam ta7mil el data
+
+
+in the condition two i have the third condition which is , if setImageLoading (false) ? get the image : Avatar
+
+
+kamen
+
++upload image condition    if  !imageAsset ? (show +uploadImage) : (hide +uploadImage)
+
+
+conclusion
+
+two boxes
+first box if imageAsset show image src image imageAsset         false show avatar	 
+
+second box progress and spinner     <Box> {uploadingByte} % 
