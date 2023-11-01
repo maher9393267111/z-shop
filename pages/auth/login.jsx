@@ -177,5 +177,5 @@ const {signInUser} = useAuth()
     );
 }
 
-export default login;
+export default Login;
 
