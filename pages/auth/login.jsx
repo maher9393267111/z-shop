@@ -21,7 +21,7 @@ const validationSchema = Yup.object().shape({
 });
 
 
-const login = () => {
+const Login = () => {
 
 const {signInUser} = useAuth()
   
