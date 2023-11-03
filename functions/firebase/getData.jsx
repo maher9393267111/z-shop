@@ -12,7 +12,8 @@ import {
   } from "firebase/firestore";
   //import { db, storage } from "./index";
   import {db,storage} from '.'
-  import { ref, deleteObject } from "firebase/storage";
+  import { ref, deleteObject , getDownloadURL ,uploadBytes } from "firebase/storage";
+  // import { v4 as uuidv4 } from 'uuid';
 
 
 //step-1- get number of documents in one Collection
@@ -103,3 +104,43 @@ window.location.reload()
 
 }
 
+
+// ------------------------
+
+
+import { v4 as uuidv4 } from 'uuid';
+export const uploadImages = async (files) => {
+    const urls = []
+    await Promise.all(files.map(async (file) => {
+        const imageRef = ref(storage, uuidv4())
+        const res = await uploadBytes(imageRef, file)
+        const url = await getDownloadURL(res.ref)
+        urls.push(url)
+    }))
+  
+    return urls
+  }
+  
+  
+  export const deleteImages = async (images) => {
+    try {
+      
+      const deleteResponses = await Promise.all(
+        images.map((image) => deleteObject(ref(storage, image)))
+      );
+      return deleteResponses;
+    } catch (error) {
+      throw error;
+    }
+  };
+  
+  
+  
+  
+  export const antdFieldValidation = [
+    {
+      required: true,
+      message: "This field is required",
+    },
+  ];
+  

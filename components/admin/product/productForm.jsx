@@ -1,11 +1,181 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
+import {
+  getDocuments,
+  antdFieldValidation,
+} from "@/functions/firebase/getData";
+import {
+  Button,
+  Form,
+  Upload,
+  message,
+  Input,
+  Select,
+  InputNumber,
+  Switch,
+} from "antd";
+const { TextArea } = Input;
 
-const ProductForm = ({cats,subcats}) => {
-    return (
-        <div>
-            productFormmmmmmmm
+import Image from "next/image";
+
+const ProductForm = ({
+  onFinish,
+  initialValues,
+  files,
+  setFiles,
+  cats,
+  subcats,
+  isupdate = false,
+}) => {
+  const [images = [], setImages] = useState(initialValues?.images || []);
+
+  return (
+    <div className=" border-2  p-6 w-[90%] md:w-1/2">
+      <Form
+        layout="vertical"
+        onFinish={(values) =>
+          onFinish({
+            ...values,
+            images,
+          })
+        }
+        initialValues={{
+          title: initialValues?.title || "",
+          images: initialValues?.images || [],
+          category: initialValues?.category || "",
+          subcategory: initialValues?.subcategory || "",
+          desc: initialValues?.desc || "",
+          instock: initialValues?.instock || "",
+          price: initialValues?.price || "",
+        }}
+      >
+        <div className="">
+          <Form.Item label="title" name="title" rules={antdFieldValidation}>
+            <Input type="text" name="title" />
+            {/* <Input /> */}
+          </Form.Item>
         </div>
-    );
-}
+
+        <Form.Item name="desc" label="Desc">
+          <TextArea rows={4} />
+        </Form.Item>
+
+        <div className="grid gap-4  grid-cols-1 lg:grid-cols-4 md:grid-cols-3">
+          <Form.Item name="category" label="Select">
+            <Select>
+              {cats.map((cat, index) => {
+                return (
+                  <Select.Option key={index} value={cat?.title}>
+                    {cat?.title}
+                  </Select.Option>
+                );
+              })}
+            </Select>
+          </Form.Item>
+
+          <Form.Item name="subcategory" label="Select">
+            <Select>
+              {subcats.map((subcat, index) => {
+                return (
+                  <Select.Option key={index} value={subcat?.title}>
+                    {subcat?.title}
+                  </Select.Option>
+                );
+              })}
+            </Select>
+          </Form.Item>
+
+          <Form.Item name="price" label="price">
+            <InputNumber />
+          </Form.Item>
+
+          <Form.Item name="instock" label="Switch" valuePropName="checked">
+            <Switch />
+          </Form.Item>
+        </div>
+
+
+        <div className="">
+            <Upload
+              accept="image/*"
+              multiple
+              beforeUpload={(file) => {
+                setFiles((prev) => [...prev, file]);
+                return false;
+              }}
+              listType="picture-card"
+            >
+              Upload Images
+            </Upload>
+          </div>
+
+
+
+        <div className="  my-5 gap-5">
+          
+{/* 
+          <div className="">
+            <Upload
+              accept="image/*"
+              multiple
+              beforeUpload={(file) => {
+                setFiles((prev) => [...prev, file]);
+                return false;
+              }}
+              listType="picture-card"
+            >
+              Upload Images
+            </Upload>
+          </div> */}
+
+          <div className=" my-2 flex-grow flex-wrap  flex   gap-5 col-span-9 ">
+            
+
+            {images?.map((image, index) => (
+              <div
+                key={index}
+                className="p-5 border-solid w-1/4 border border-gray-300 rounded-xl overflow-hidden flex flex-col items-center justify-center gap-2"
+              >
+                <img
+                  className="w-20 h-20 object-cover"
+                  src={image}
+                  alt={image}
+                  // width={80}
+                  // height={80}
+                />
+
+                <span
+                  className="underline  cursor-pointer text-red-600"
+                  onClick={() => {
+                    setImages((prev) => {
+                      const temp = [...prev];
+                      temp.splice(index, 1);
+                      return temp;
+                    });
+                  }}
+                >
+                  Remove
+                </span>
+              </div>
+            ))}
+          </div>
+
+        
+        </div>
+
+        <div className="  flex justify-center">
+            <Button
+              htmlType="submit"
+              className="!bg-blue-500 text-white"
+              type="primary"
+            >
+              Save
+            </Button>
+          </div>
+
+
+      </Form>
+    </div>
+  );
+};
 
 export default ProductForm;
