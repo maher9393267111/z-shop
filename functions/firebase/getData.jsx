@@ -85,7 +85,7 @@ export const getDocument = async (col ,id)=>{
 
 // col is collection name -->  category  or product
 // item is  object that have  data
-export const  handleDelete  = (col ,item) =>{
+export const  handleDelete  = (col ,item ,isproduct=false) =>{
 
 
   // path of document we well delete
@@ -93,10 +93,25 @@ export const  handleDelete  = (col ,item) =>{
 // delete document from firestore then delete document images
   deleteDoc(itemDoc).then(async()=>{
 
+    if(isproduct) {
+
+      deleteImages(item?.images)
+
+    }
+
+    else {
+
 
     // specifu image folder and name to delete it => col is folder  image.name is image name will deleted from storage
     const desertRef = ref(storage ,`${col}/${item.image.name}`)
+
+
 await deleteObject(desertRef)
+
+    }
+
+
+
 
 window.location.reload()
 

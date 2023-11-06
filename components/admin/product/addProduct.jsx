@@ -1,6 +1,6 @@
 import React from 'react';
 import ProductForm from './productForm';
-import {toast} from 'react-toastify'
+import { message } from 'antd';
 import { useAuth } from '@/functions/context';
 import { useState } from 'react';
 import { db } from '@/functions/firebase';
@@ -18,9 +18,9 @@ const AddProductMain = ({cats , subcats}) => {
        
           values.images = await uploadImages(files);
          await addDoc(collection(db, 'products') , values)
-          toast.success("Product Added Successfully");
+          message.success("Product Added Successfully");
         } catch (error) {
-          toast.error(error.message);
+          message.error(error.message);
         } finally {
             setPageLoading(false)
          // dispatch(SetLoading(false));

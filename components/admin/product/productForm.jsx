@@ -29,7 +29,7 @@ const ProductForm = ({
   const [images = [], setImages] = useState(initialValues?.images || []);
 
   return (
-    <div className=" border-2  p-6 w-[90%] md:w-1/2">
+    <div className=" border-2 ml-2  p-6 w-[90%] md:w-1/2">
       <Form
         layout="vertical"
         onFinish={(values) =>
@@ -61,7 +61,12 @@ const ProductForm = ({
 
         <div className="grid gap-4  grid-cols-1 lg:grid-cols-4 md:grid-cols-3">
           <Form.Item name="category" label="Select">
+          
             <Select>
+
+            <Select.Option  value="">
+                    Select Category
+                  </Select.Option>
               {cats.map((cat, index) => {
                 return (
                   <Select.Option key={index} value={cat?.title}>
@@ -74,6 +79,9 @@ const ProductForm = ({
 
           <Form.Item name="subcategory" label="Select">
             <Select>
+            <Select.Option  value="">
+                    Select SubCategory
+                  </Select.Option>
               {subcats.map((subcat, index) => {
                 return (
                   <Select.Option key={index} value={subcat?.title}>
@@ -112,20 +120,7 @@ const ProductForm = ({
 
         <div className="  my-5 gap-5">
           
-{/* 
-          <div className="">
-            <Upload
-              accept="image/*"
-              multiple
-              beforeUpload={(file) => {
-                setFiles((prev) => [...prev, file]);
-                return false;
-              }}
-              listType="picture-card"
-            >
-              Upload Images
-            </Upload>
-          </div> */}
+
 
           <div className=" my-2 flex-grow flex-wrap  flex   gap-5 col-span-9 ">
             

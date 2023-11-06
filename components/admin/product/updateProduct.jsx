@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { getDocument } from "@/functions/firebase/getData";
 import { useAuth } from "@/functions/context";
 import ProductForm from "./productForm";
-import { toast } from "react-toastify";
+import { message } from "antd"
 import { updateDoc, doc } from "firebase/firestore";
 import { db } from "@/functions/firebase";
 import AdminLayout from "../AdminLayout";
@@ -37,10 +37,10 @@ const UpdateProductMain = ({ product , cats , subcats }) => {
       values.images = [...values.images, ...newImagesUploaded];
       await updateDoc(doc(db, "products", id), values);
 
-      toast.success("Product Updated Successfully");
+      message.success("Product Updated Successfully");
       // router.push("/admin?tab=1");
     } catch (error) {
-      toast.error(error.message);
+      message.error(error.message);
     } finally {
       setPageLoading(false);
     }
