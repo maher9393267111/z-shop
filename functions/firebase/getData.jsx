@@ -8,6 +8,7 @@ import {
   query,
   where,
   deleteDoc,
+  updateDoc,
   limit,
 } from "firebase/firestore";
 //import { db, storage } from "./index";
@@ -18,6 +19,7 @@ import {
   getDownloadURL,
   uploadBytes,
 } from "firebase/storage";
+import { message } from "antd";
 // import { v4 as uuidv4 } from 'uuid';
 
 //step-1- get number of documents in one Collection
@@ -75,7 +77,8 @@ export const getDocument = async (col, id) => {
 
 // col is collection name -->  category  or product
 // item is  object that have  data
-export const handleDelete = (col, item, isproduct = false) => {
+export const handleDelete = (col, item, isproduct = false, isUser) => {
+  console.log("item", item);
   // path of document we well delete
   const itemDoc = doc(db, col, item.id);
   // delete document from firestore then delete document images
@@ -84,9 +87,13 @@ export const handleDelete = (col, item, isproduct = false) => {
       deleteImages(item?.images);
     } else {
       // specifu image folder and name to delete it => col is folder  image.name is image name will deleted from storage
-      const desertRef = ref(storage, `${col}/${item.image.name}`);
+
+      const desertRef = isUser
+        ? ref(storage, `${col}/${item?.imageId}`)
+        : ref(storage, `${col}/${item.image.name}`);
 
       await deleteObject(desertRef);
+      message.success("Image deleted successfully");
     }
 
     window.location.reload();
@@ -127,3 +134,25 @@ export const antdFieldValidation = [
     message: "This field is required",
   },
 ];
+
+export const updateUserRole = async (userId, updatedRole) => {
+  console.log("Updating user role", userId, updatedRole);
+  if (["standard", "moderator", "admin"].includes(updatedRole)) {
+    const usersCollection = doc(db, "users", userId);
+
+    try {
+      // Update the role attribute in the user document
+      await updateDoc(usersCollection, { role: updatedRole });
+      // successCallback();
+      message.success("User role updated successfully");
+      console.log("User role successfully updated!");
+    } catch (error) {
+      console.error("Error updating user role:", error);
+      message.error("User role): " + error.message);
+    }
+  } else {
+    console.error(
+      "Invalid updatedRole parameter. Please provide 'standard', 'moderator', or 'admin'."
+    );
+  }
+};

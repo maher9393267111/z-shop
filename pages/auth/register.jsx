@@ -97,7 +97,7 @@ const RegisterPage = () => {
     console.log("image File-->", imageFile);
 
     // to specify where i well store the image -->{in profile/{id}} profile as folder name and id as imageName
-    const storageRef = sRef(storage, `Profile/${small_id}`);
+    const storageRef = sRef(storage, `users/${small_id}`);
     // then upload image to location in firebase/storage
     const uploadTask = uploadBytesResumable(storageRef, imageFile);
 

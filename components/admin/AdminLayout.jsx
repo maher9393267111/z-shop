@@ -25,6 +25,12 @@ const AdminLayout = ({ children }) => {
 
   ];
 
+
+ 
+
+
+
+
   const { logout, profile, setPageLoading, pageLoading, user  } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const { pathname, replace } = useRouter();
@@ -131,6 +137,9 @@ if(!isLoggeed)
                 <li className="py-2 px-4 cursor-pointer">{listItem.text}</li>
               </Link>
             ))}
+
+
+
           </ul>
 
           <div className=" py-2 px-4 cursor-pointer text-white">
