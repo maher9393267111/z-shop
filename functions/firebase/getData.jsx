@@ -131,7 +131,7 @@ export const deleteImages = async (images) => {
 export const antdFieldValidation = [
   {
     required: true,
-    message: "This field is required",
+    message: "This field is required dev",
   },
 ];
 
