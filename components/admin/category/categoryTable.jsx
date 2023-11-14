@@ -3,7 +3,7 @@ import { Table } from "antd";
 import Link from "next/link";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 import { handleDelete } from "@/functions/firebase/getData";
-
+import Image from "next/image";
 const CategoryTable = ({ cats }) => {
   const columns = [
     {
@@ -19,9 +19,10 @@ const CategoryTable = ({ cats }) => {
       render: (record) => {
         return (
           <>
-            <img
-              className="  relative  -ml-6  w-24 h-24 object-contain object-center "
-              src={record?.image?.url}
+            <Image
+            width={50} height={50}
+              className="  relative  -ml-6  rounded-lg w-24 h-24 object-contain object-center "
+              src={record?.images}
               alt=""
             />
           </>

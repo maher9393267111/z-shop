@@ -103,25 +103,79 @@ export const handleDelete = (col, item, isproduct = false, isUser) => {
 // ------------------------
 
 import { v4 as uuidv4 } from "uuid";
-export const uploadImages = async (files) => {
-  const urls = [];
-  await Promise.all(
-    files.map(async (file) => {
-      const imageRef = ref(storage, uuidv4());
-      const res = await uploadBytes(imageRef, file);
-      const url = await getDownloadURL(res.ref);
-      urls.push(url);
-    })
-  );
+// export const uploadImages = async (files) => {
+//   const urls = [];
+//   await Promise.all(
+//     files.map(async (file) => {
+//       const imageRef = ref(storage, uuidv4());
+//       const res = await uploadBytes(imageRef, file);
+//       const url = await getDownloadURL(res.ref);
+//       urls.push(url);
+//     })
+//   );
 
-  return urls;
+//   return urls;
+// };
+
+export const uploadImages = async (
+  files,
+  isnotProduct = false,
+  col = "products"
+) => {
+  console.log("is--->", isnotProduct, col);
+  if (isnotProduct) {
+    const imageRef = ref(storage, `${col}/${uuidv4()}`);
+    // send image to firebase/storage
+    const res = await uploadBytes(imageRef, files);
+
+    // retrive image from firebase/storage
+    const url = await getDownloadURL(res.ref);
+
+    return url;
+  } else {
+    const urls = [];
+    await Promise.all(
+      files.map(async (file) => {
+        // folder and image name to save image it  --> products/121212
+        const imageRef = ref(storage, `products/${uuidv4()}`);
+        // send image to firebase/storage
+        const res = await uploadBytes(imageRef, file);
+
+        // retrive image from firebase/storage
+        const url = await getDownloadURL(res.ref);
+
+        //// then add image Link to array
+        urls.push(url);
+      })
+    );
+
+    // all images link return {result of this function}
+
+    return urls;
+  }
 };
+
+// delete single image
+
+export const deleteImage = async (image) => {
+  try {
+    const deleteResponses = await deleteObject(ref(storage, image));
+    message.success("single image deleted successfully");
+
+    return deleteResponses;
+  } catch (error) {
+    throw error;
+  }
+};
+
+// delete array of images
 
 export const deleteImages = async (images) => {
   try {
     const deleteResponses = await Promise.all(
       images.map((image) => deleteObject(ref(storage, image)))
     );
+
     return deleteResponses;
   } catch (error) {
     throw error;

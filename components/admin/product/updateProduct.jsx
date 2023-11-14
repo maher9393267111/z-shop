@@ -4,13 +4,13 @@ import { useRouter } from "next/router";
 import { getDocument } from "@/functions/firebase/getData";
 import { useAuth } from "@/functions/context";
 import ProductForm from "./productForm";
-import { message } from "antd"
+import { message } from "antd";
 import { updateDoc, doc } from "firebase/firestore";
 import { db } from "@/functions/firebase";
 import AdminLayout from "../AdminLayout";
 
 import { uploadImages, deleteImages } from "@/functions/firebase/getData";
-const UpdateProductMain = ({ product , cats , subcats }) => {
+const UpdateProductMain = ({ product, cats, subcats }) => {
   const { query, replace } = useRouter();
   const { id } = query;
   //const [product, setProduct] = useState(null);
@@ -19,10 +19,9 @@ const UpdateProductMain = ({ product , cats , subcats }) => {
   const isupdate = true;
   const { setPageLoading, pageLoading } = useAuth();
 
-  const  initialValues =product
+  const initialValues = product;
 
-  console.log('?????-?????-'  + initialValues);
-  
+  console.log("?????-?????-" + initialValues);
 
   const onFinish = async (values) => {
     try {
@@ -46,16 +45,18 @@ const UpdateProductMain = ({ product , cats , subcats }) => {
     }
   };
 
-
-
-
   return (
     <AdminLayout>
-      
-
       <ProductForm
-      {...{initialValues , cats , subcats, files , setFiles ,isupdate , onFinish }} 
-     
+        {...{
+          initialValues,
+          cats,
+          subcats,
+          files,
+          setFiles,
+          isupdate,
+          onFinish,
+        }}
       />
     </AdminLayout>
   );

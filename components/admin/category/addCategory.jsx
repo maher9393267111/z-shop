@@ -1,44 +1,103 @@
-import React from 'react';
-import AdminLayout from '../AdminLayout';
-import CategoryForm from './categoryForm';
-import { useState } from 'react';
-import { db } from '@/functions/firebase';
-import { addDoc ,collection } from 'firebase/firestore';
-import { toast } from 'react-toastify';
-import { useAuth } from '@/functions/context';
 
-const AddCategoryMain = () => {
+import React from "react";
+import CategoryForm from "./categoryForm";
+import { toast } from "react-toastify";
+import { useAuth } from "@/functions/context";
+import { useState } from "react";
+import { db } from "@/functions/firebase";
+import { addDoc, collection } from "firebase/firestore";
+import { uploadImages } from "@/functions/firebase/getData";
+import { message } from "antd";
+import AdminLayout from "../AdminLayout";
 
-const [title,setTitle] = useState("");
-const [image , setImage] = useState({url:'' , name:''})
-const {setPageLoading,pageLoading} = useAuth();
+const AddCategoryMain = ({ products }) => {
+  const [files, setFiles] = useState("");
+  const { setPageLoading, pageLoading } = useAuth();
+  const isupdate = true;
 
-const handleClick = async (e)=> {
-    e.preventDefault();
-    setPageLoading(true)
+  const onFinish = async (values) => {
+    console.log("values-->", values);
+    console.log("filess", files);
 
-    const data = {title:title , image:image}
+    ////urls [array of images]
 
-await addDoc(collection(db, 'cats'), data)
+    if(!files) {
+      message.error("Please select images")
+      return;
+    }
 
-    setPageLoading(false)
-    toast.success('Category Uploaded Successfully')
-    setTitle('')
-    setImage({name:"", url:""})
+    else {
+    values.images = await uploadImages(files ,true ,'cats');
 
-}
+    await addDoc(collection(db, "cats"), values);
 
+    message.success(`Category Uploaded Successfully`);
+    }
+  };
 
-    return (
-        <AdminLayout>
-
-        <CategoryForm
-       {...{title , setTitle , image , setImage, handleClick}}
-       
-        />
-
-        </AdminLayout>
-    );
-}
+  return (
+    <AdminLayout>
+      <CategoryForm {...{ onFinish, files, setFiles }} />
+    </AdminLayout>
+  );
+};
 
 export default AddCategoryMain;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import React from 'react';
+// import AdminLayout from '../AdminLayout';
+// import CategoryForm from './categoryForm';
+// import { useState } from 'react';
+// import { db } from '@/functions/firebase';
+// import { addDoc ,collection } from 'firebase/firestore';
+// import { toast } from 'react-toastify';
+// import { useAuth } from '@/functions/context';
+
+// const AddCategoryMain = () => {
+
+// const [title,setTitle] = useState("");
+// const [image , setImage] = useState({url:'' , name:''})
+// const {setPageLoading,pageLoading} = useAuth();
+
+// const handleClick = async (e)=> {
+//     e.preventDefault();
+//     setPageLoading(true)
+
+//     const data = {title:title , image:image}
+
+// await addDoc(collection(db, 'cats'), data)
+
+//     setPageLoading(false)
+//     toast.success('Category Uploaded Successfully')
+//     setTitle('')
+//     setImage({name:"", url:""})
+
+// }
+
+
+//     return (
+//         <AdminLayout>
+
+//         <CategoryForm
+//        {...{title , setTitle , image , setImage, handleClick}}
+       
+//         />
+
+//         </AdminLayout>
+//     );
+// }
+
+// export default AddCategoryMain;
