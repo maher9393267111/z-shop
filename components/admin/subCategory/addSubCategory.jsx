@@ -1,61 +1,49 @@
 import React from "react";
-import AdminLayout from "../AdminLayout";
 import SubCategoryForm from "./subCategoryForm";
+import { toast } from "react-toastify";
+import { useAuth } from "@/functions/context";
 import { useState } from "react";
 import { db } from "@/functions/firebase";
 import { addDoc, collection } from "firebase/firestore";
-import { toast } from "react-toastify";
-import { useAuth } from "@/functions/context";
+import { uploadImages } from "@/functions/firebase/getData";
+import { message } from "antd";
+import AdminLayout from "../AdminLayout";
 
-const AddSubCategoryMain = ({ cats }) => {
-    const [title, setTitle] = useState("");
-    const [image, setImage] = useState({ url: "", name: "" });
-    const [category, setCategory] = useState("");
-  
-  
-    const { setPageLoading, pageLoading } = useAuth();
-  
-  
-    const handleClick = async (e) => {
-      e.preventDefault();
-  
-  
-      setPageLoading(true);
-  
-  
-      const data = { title: title, image: image, category: category };
-  
-  
-      await addDoc(collection(db, "subcats"), data);
-  
-  
-      setPageLoading(false);
-      toast.success("SubCategory Uploaded Successfully");
-      setTitle("");
-      setImage({ name: "", url: "" });
-      setCategory("");
-    };
-  
-  
-    return (
-      <AdminLayout>
-        {cats?.length}
-        <SubCategoryForm
-          {...{
-            title,
-            setTitle,
-            image,
-            setImage,
-            handleClick,
-            cats,
-            category,
-            setCategory,
-          }}
-        />
-      </AdminLayout>
-    );
+
+
+
+const AddSubCategoryMain = ({cats}) => {
+  const [file, setFile] = useState("");
+  const { setPageLoading, pageLoading } = useAuth();
+  const isupdate = true;
+
+
+  const onFinish = async (values) => {
+    console.log("values-->", values);
+    console.log("file", file);
+
+
+    if (!file) {
+      message.error("Please select image");
+      return; // stoppppp progress the function
+    } else {
+      values.image = await uploadImages(file, true, "subcats"); // result is image link from firebase/storage
+
+
+      await addDoc(collection(db, "subcats"), values);
+
+
+      message.success("SubCategory added  successfully");
+    }
   };
-  
-  
-  export default AddSubCategoryMain;
-  
+
+
+  return (
+    <AdminLayout>
+      <SubCategoryForm {...{ onFinish, file, setFile,cats }} />
+    </AdminLayout>
+  );
+};
+
+
+export default AddSubCategoryMain;

@@ -9,13 +9,17 @@ const AllSubsPage = ({ subcats }) => {
   );
 };
 
+
 export default AllSubsPage;
+
 
 // serverside
 AllSubsPage.getInitialProps = async (context) => {
   const SubCategories = await getDocuments("subcats"); //  []
 
+
   console.log("data💡", SubCategories);
+
 
   return {
     // props from serverside will go to props in clientside

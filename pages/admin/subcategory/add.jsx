@@ -4,10 +4,14 @@ import AddSubCategoryMain from "@/components/admin/subCategory/addSubCategory";
 const AddSubPage = ({ cats }) => {
   return (
     <div>
-      <AddSubCategoryMain cats={cats} />
+      <AddSubCategoryMain
+      cats={cats}
+      />
     </div>
   );
 };
+
+
 
 
 export default AddSubPage;
@@ -18,7 +22,11 @@ AddSubPage.getInitialProps = async (context) => {
   const Categories = await getDocuments("cats"); //  []
 
 
+
+
   console.log("data", Categories);
+
+
 
 
   return {

@@ -1,8 +1,14 @@
+
+
+
+
+
+
 import React from "react";
 import { Table } from "antd";
 import Link from "next/link";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
-import { handleDelete } from "@/functions/firebase/getData";
+import { handleDelete, handleDeleteGlobal } from "@/functions/firebase/getData";
 const SubCategoryTable = ({ subcats }) => {
   const columns = [
     {
@@ -16,8 +22,12 @@ const SubCategoryTable = ({ subcats }) => {
       title: "Category",
 
 
+
+
       dataIndex: "category",
     },
+
+
 
 
     {
@@ -28,13 +38,15 @@ const SubCategoryTable = ({ subcats }) => {
           <>
             <img
               className="  relative  -ml-6  w-24 h-24 object-contain object-center "
-              src={record?.image?.url}
+              src={record?.image}
               alt=""
             />
           </>
         );
       },
     },
+
+
 
 
     {
@@ -48,11 +60,13 @@ const SubCategoryTable = ({ subcats }) => {
               <div>
                 <AiFillDelete
                   // send collection name and single category data to delete
-                  onClick={() => handleDelete("subcats", record)}
+                  onClick={() => handleDeleteGlobal("subcats", record)}
                   className=" hover:text-red-700 text-red-500 cursor-pointer"
                   size={"25"}
                 />
               </div>
+
+
 
 
               <div>
@@ -71,12 +85,16 @@ const SubCategoryTable = ({ subcats }) => {
   ];
 
 
+
+
   return (
     <div className=" w-[90%]  md:w-[70%] mx-auto">
       <Table columns={columns} dataSource={subcats} />
     </div>
   );
 };
+
+
 
 
 export default SubCategoryTable;

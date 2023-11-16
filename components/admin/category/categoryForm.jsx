@@ -20,11 +20,11 @@ import Image from "next/image";
 const CategoryForm = ({
   onFinish,
   initialValues,
-  files,
-  setFiles,
+  file,
+  setFile,
   isupdate = false,
 }) => {
-  const [images, setImages] = useState(initialValues?.images || "");
+  const [image, setImage] = useState(initialValues?.image || "");
 
   return (
     <div className=" w-[80%] mx-auto ">
@@ -36,12 +36,12 @@ const CategoryForm = ({
             // name of our function
             onFinish({
               ...values,
-              images,
+              image,
             })
           }
           initialValues={{
             title: initialValues?.title || "",
-            images: initialValues?.images || "",
+             image: initialValues?.image || "",
           }}
         >
           <Form.Item name="title" label="Title">
@@ -58,21 +58,20 @@ const CategoryForm = ({
               maxCount={1}
               // file is data of image will be uploaded to firebase/storage
               beforeUpload={(file) => {
-                setFiles(file);
+                setFile(file);
                 // setFiles((prev) => [...prev, file]);
                 return false;
               }}
               listType="picture-card"
               // onChange={(e) => {
               //   setFiles("");
-                
+
               //   //form.setFieldsValue({ linkupload: "" });
               // }}
-              onRemove={()=>{setFiles("")
-              console.log('Removed files')
-            }            
-            
-            }
+              onRemove={() => {
+                setFile("");
+                console.log("Removed files");
+              }}
             >
               Upload Image
             </Upload>
@@ -104,21 +103,18 @@ const CategoryForm = ({
             ))}
           </div> */}
 
+          {image && (
+            <div className="  w-24 md:w-24 relative">
+              <img className=" w-24 h-24  rounded-lg" src={images} alt="" />
 
-{images &&
-<div className="  w-24 md:w-24 relative">
-<img className=" w-24 h-24  rounded-lg" src={images} alt="" />
-
-<p
-onClick={()=>setImages("")}
-className= "  !text-red-500 cursor-pointer text-white font-semibold text-center">Remove</p>
-
-
-</div>
-
-}
-        
-      
+              <p
+                onClick={() => setImages("")}
+                className="  !text-red-500 cursor-pointer text-white font-semibold text-center"
+              >
+                Remove
+              </p>
+            </div>
+          )}
 
           <div className=" ">
             <Button

@@ -11,23 +11,23 @@ import { message } from "antd";
 import AdminLayout from "../AdminLayout";
 
 const AddCategoryMain = ({ products }) => {
-  const [files, setFiles] = useState("");
+  const [file, setFile] = useState("");
   const { setPageLoading, pageLoading } = useAuth();
   const isupdate = true;
 
   const onFinish = async (values) => {
     console.log("values-->", values);
-    console.log("filess", files);
+    console.log("filess", file);
 
     ////urls [array of images]
 
-    if(!files) {
+    if(!file) {
       message.error("Please select images")
       return;
     }
 
     else {
-    values.images = await uploadImages(files ,true ,'cats');
+    values.images = await uploadImages(file ,true ,'cats');
 
     await addDoc(collection(db, "cats"), values);
 
@@ -37,7 +37,7 @@ const AddCategoryMain = ({ products }) => {
 
   return (
     <AdminLayout>
-      <CategoryForm {...{ onFinish, files, setFiles }} />
+      <CategoryForm {...{ onFinish, file, setFile }} />
     </AdminLayout>
   );
 };

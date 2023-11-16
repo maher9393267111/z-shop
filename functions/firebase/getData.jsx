@@ -85,7 +85,9 @@ export const handleDelete = (col, item, isproduct = false, isUser) => {
   deleteDoc(itemDoc).then(async () => {
     if (isproduct) {
       deleteImages(item?.images);
+      message.info("product condition");
     } else {
+      message.info("user condition");
       // specifu image folder and name to delete it => col is folder  image.name is image name will deleted from storage
 
       const desertRef = isUser
@@ -95,6 +97,23 @@ export const handleDelete = (col, item, isproduct = false, isUser) => {
       await deleteObject(desertRef);
       message.success("Image deleted successfully");
     }
+
+    window.location.reload();
+  });
+};
+
+// handleDelete GLOBAL function
+
+export const handleDeleteGloball = (col, item) => {
+  console.log("item", item);
+  // path of document we well delete
+  const itemDoc = doc(db, col, item.id);
+  // delete document from firestore then delete document images
+  deleteDoc(itemDoc).then(async () => {
+   
+
+   await deleteImage(item?.images)
+    message.success("Image deleted successfully");
 
     window.location.reload();
   });

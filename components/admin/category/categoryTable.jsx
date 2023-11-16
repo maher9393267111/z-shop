@@ -2,7 +2,7 @@ import React from "react";
 import { Table } from "antd";
 import Link from "next/link";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
-import { handleDelete } from "@/functions/firebase/getData";
+import {  handleDeleteGloball } from "@/functions/firebase/getData";
 import Image from "next/image";
 const CategoryTable = ({ cats }) => {
   const columns = [
@@ -22,7 +22,7 @@ const CategoryTable = ({ cats }) => {
             <Image
             width={50} height={50}
               className="  relative  -ml-6  rounded-lg w-24 h-24 object-contain object-center "
-              src={record?.images}
+              src={record?.image}
               alt=""
             />
           </>
@@ -44,7 +44,7 @@ const CategoryTable = ({ cats }) => {
               <div>
                 <AiFillDelete
                // send collection name and single category data to delete
-                  onClick={()=>handleDelete("cats",record)}
+                  onClick={()=>handleDeleteGloball("cats",record)}
                   className=" hover:text-red-700 text-red-500 cursor-pointer"
                   size={"25"}
                 />

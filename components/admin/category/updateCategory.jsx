@@ -38,7 +38,7 @@ const UpdateCategorytMain = ({ category }) => {
 
       if (files) {
         message.error("delete image old" )
-         await deleteImage(initialValues.images);
+      await deleteImage(initialValues.images);
          values.images = await uploadImages(files, true, "cats");
       //  return
       }
