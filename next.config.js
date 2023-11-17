@@ -2,7 +2,7 @@
 const nextConfig = {
 
     images: {
-        domains: ['firebasestorage.googleapis.com'],
+        domains: ['firebasestorage.googleapis.com' ,"mir-s3-cdn-cf.behance.net"],
       },
 
 }

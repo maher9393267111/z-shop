@@ -1,0 +1,26 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    .box-shadow {
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0);
+    }
+    .box-shadow-hover {
+      box-shadow: 0px 100px 80px -5px rgba(0, 0, 0, 0.15);
+    }
+ 
+  }
+  
+
+  .navbar-sticky {
+    background-color: #fff;
+  }
+  
+
+  .slide-bg {
+    background-size: 14px 14px;
+    backdrop-filter: blur(20px);
+    background-image: radial-gradient(rgba(0, 0, 0, 0.09) 1px, #fff 1px);
+  }

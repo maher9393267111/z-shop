@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAuth } from '@/functions/context';
 
-
+import Navbar from '@/components/client/layout/navbar';
 
 const Index = () => {
 
@@ -12,9 +12,8 @@ console.log("user Data---->",profile)
        
         <div className='bg-green-500 text-white text-center my-4'>
 
-    
+    <Navbar/>
 
-            Home Page
         </div>
       
       

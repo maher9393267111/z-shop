@@ -1,6 +1,6 @@
 import { ChakraProvider } from '@chakra-ui/react'
-//import '../styles/globals.css'
-import '../input.css'
+import '../styles/globals.css'
+
 import { AnimatePresence, motion } from "framer-motion";
 
 import { ToastContainer,toast } from 'react-toastify'

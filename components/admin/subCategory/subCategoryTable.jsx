@@ -1,9 +1,3 @@
-
-
-
-
-
-
 import React from "react";
 import { Table } from "antd";
 import Link from "next/link";
@@ -21,14 +15,8 @@ const SubCategoryTable = ({ subcats }) => {
       // header of table  category
       title: "Category",
 
-
-
-
       dataIndex: "category",
     },
-
-
-
 
     {
       title: "image",
@@ -36,7 +24,9 @@ const SubCategoryTable = ({ subcats }) => {
       render: (record) => {
         return (
           <>
-            <img
+            <Image
+              width={50}
+              height={50}
               className="  relative  -ml-6  w-24 h-24 object-contain object-center "
               src={record?.image}
               alt=""
@@ -45,9 +35,6 @@ const SubCategoryTable = ({ subcats }) => {
         );
       },
     },
-
-
-
 
     {
       title: "Actions",
@@ -66,9 +53,6 @@ const SubCategoryTable = ({ subcats }) => {
                 />
               </div>
 
-
-
-
               <div>
                 <Link href={`/admin/subcategory/edit/${record?.id}`}>
                   <AiFillEdit
@@ -84,17 +68,11 @@ const SubCategoryTable = ({ subcats }) => {
     },
   ];
 
-
-
-
   return (
     <div className=" w-[90%]  md:w-[70%] mx-auto">
       <Table columns={columns} dataSource={subcats} />
     </div>
   );
 };
-
-
-
 
 export default SubCategoryTable;
