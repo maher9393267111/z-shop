@@ -77,13 +77,13 @@ const Navbar = () => {
       >
         <div className="flex flex-wrap gap-8">
           <div className="z-10 max-w-[80px] rounded-lg p-4 pr-0">
-            <a href="/">
+            <Link href="/">
                 {/* LOGO */}
               <Image
               width={100}
               height={100}
               src={"https://mir-s3-cdn-cf.behance.net/project_modules/1400/d77ac359949097.5a357be8594ab.jpg"} alt="behide logo" className="w-full" />
-            </a>
+            </Link>
           </div>
           <div
             style={{ top: open ? '100%' : '-600%' }}
