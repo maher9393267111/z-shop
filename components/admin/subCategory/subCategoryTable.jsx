@@ -1,6 +1,7 @@
 import React from "react";
 import { Table } from "antd";
 import Link from "next/link";
+import Image from "next/image";  
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 import { handleDelete, handleDeleteGlobal } from "@/functions/firebase/getData";
 const SubCategoryTable = ({ subcats }) => {
