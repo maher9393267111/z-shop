@@ -64,6 +64,7 @@ const Navbar = () => {
 
   return (
     <>
+    
       <div
         ref={navbar}
         className={
@@ -190,6 +191,7 @@ const Navbar = () => {
                       ['Account', `/user/profile`],
                       ['Orders', `/user/orders/`],
                       ['Logout', `/user/logout/`],
+                      profile?.role === 'admin' && ['Dashboard', '/admin']
                     ].map((item, index) => {
                       return (
                         <Link
