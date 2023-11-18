@@ -23,6 +23,7 @@ export const StateContextProvider = ({ children }) => {
   const [name, setName] = useState("zaher");
   const router = useRouter()
   const [pageLoading,setPageLoading] = useState(false)
+  const [isAdmin ,setisAdmin] = useState(false)
 
   const register = (
     email,
@@ -34,7 +35,7 @@ export const StateContextProvider = ({ children }) => {
   ) => {
     createUserWithEmailAndPassword(auth, email, password)
       .then(async (res) => {
-        setPageLoading(true);
+       // setPageLoading(true);
         //after saving data stop spinner
         console.log("response:===>",res);
 
@@ -54,7 +55,7 @@ export const StateContextProvider = ({ children }) => {
           imageId,
           role: "admin",
         });
-        setPageLoading(false);
+     //   setPageLoading(false);
         // while loading data from firebase start spinner
         
         toast.success("User added successfully");
@@ -68,7 +69,7 @@ export const StateContextProvider = ({ children }) => {
 
   const signInUser = async (email, password) => {
     try {
-      setPageLoading(true);
+    //  setPageLoading(true);
       //response of user data
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       
@@ -81,13 +82,13 @@ export const StateContextProvider = ({ children }) => {
       //   return
       // }
      
-      setPageLoading(false);
+    //  setPageLoading(false);
       toast.success("successfully signed in");
       
       router.push("/");
     } catch (error) {
       toast.error(error?.message);
-      setPageLoading(false);
+    //  setPageLoading(false);
       console.log(error?.message);
       
     }
@@ -96,9 +97,9 @@ export const StateContextProvider = ({ children }) => {
 
   const forgetPassword = async (email) => {
     try {
-      setPageLoading(true);
+     // setPageLoading(true);
       await sendPasswordResetEmail(auth, email);
-      setPageLoading(false);
+    //  setPageLoading(false);
       
       toast.success(
         "successfully password reseted password sent successfully to your email"
@@ -120,7 +121,7 @@ useEffect(() => {
     console.log("user Auth Data--->", user);
     // if auth user is  already maked register or Login
     // find his profile data from firebase/firetore
-    setPageLoading(true);
+   // setPageLoading(true);
     if (user) {
       // set Authuser data in state
       setUserData(user);
@@ -137,7 +138,7 @@ useEffect(() => {
       }
     }
 
-    setPageLoading(false);
+   // setPageLoading(false);
   });
 }, []);
 
@@ -150,7 +151,7 @@ const logout = () => {
 
   return (
     <StateContext.Provider value={{ name, register, signInUser,forgetPassword,
-    pageLoading,profile,userData,logout,setPageLoading }}>
+    pageLoading,profile,userData,logout,setPageLoading ,isAdmin ,setisAdmin}}>
       
       {children}
     </StateContext.Provider>

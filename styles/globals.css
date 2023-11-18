@@ -22,5 +22,5 @@
   .slide-bg {
     background-size: 14px 14px;
     backdrop-filter: blur(20px);
-    background-image: radial-gradient(rgba(0, 0, 0, 0.09) 1px, #fff 1px);
+    /* background-image: radial-gradient(rgba(0, 0, 0, 0.09) 1px, #fff 1px); */
   }

@@ -8,6 +8,7 @@ const Admin = ({cats,subcats,products}) => {
 
   return (
     <>
+    
       <MainAdmin 
       cats={cats}
       subcats={subcats}

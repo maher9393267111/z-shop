@@ -4,7 +4,9 @@ import CountCard from './CountCards';
 const MainAdmin = ({cats,subcats,products}) => {
     return (
         <div>
+          
             <AdminLayout>
+               
                <CountCard
                cats={cats}
                subcats={subcats}

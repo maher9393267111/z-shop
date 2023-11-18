@@ -57,11 +57,11 @@ const Login = () => {
 
   const [showPassword, setShowPassword] = React.useState(false);
 
-  useEffect(() => {
-    if (auth.currentUser) {
-      router.push("/");
-    }
-  }, [router]);
+  // useEffect(() => {
+  //   if (auth.currentUser) {
+  //     router.push("/");
+  //   }
+  // }, [router]);
 
 
   return (
@@ -182,18 +182,4 @@ const Login = () => {
 
 export default Login;
 
-// export async function getServerSideProps() {
-  
-// console.log('user: ' + auth?.currentUser)
-//   if (auth.currentUser) {
-//     return {
-//       redirect: {
-//         destination: "/",
-//         permanent: false,
-//       },
-//     };
-//   }
-//   return {
-//     props: {},
-//   };
-// }
+

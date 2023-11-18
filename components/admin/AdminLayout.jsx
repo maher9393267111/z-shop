@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
 import { Spinner, Avatar, Button } from "@chakra-ui/react";
 import { toast } from "react-toastify";
+import PinCode from "./pincode";
 
 const AdminLayout = ({ children }) => {
   const list = [
@@ -31,7 +32,7 @@ const AdminLayout = ({ children }) => {
 
 
 
-  const { logout, profile, setPageLoading, pageLoading, user  } = useAuth();
+  const { logout, profile, setPageLoading, pageLoading, user ,isAdmin ,setisAdmin  } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const { pathname, replace } = useRouter();
 
@@ -75,45 +76,49 @@ if(!isLoggeed)
 
 
 
-  if (pageLoading) {
-    <div className=" h-[100vh] flex justify-center items-center">
-      <div>
-        <h1>Please Login First to Access to this page</h1>
-        <h2 className=" text-blue-400 text-center text-2xl font-semibold">
-          <Link href={"/auth/login"}> Login Page</Link>
-        </h2>
-        <h2 className=" text-blue-400 text-4xl font-bold text-center mt-12">
-          <Spinner size={"xl"} fontSize={"50px"} />
-        </h2>
-      </div>
-    </div>;
-  }
+  // if (pageLoading) {
+  //   <div className=" h-[100vh] flex justify-center items-center">
+  //     <div>
+  //       <h1>Please Login First to Access to this page</h1>
+  //       <h2 className=" text-blue-400 text-center text-2xl font-semibold">
+  //         <Link href={"/auth/login"}> Login Page</Link>
+  //       </h2>
+  //       <h2 className=" text-blue-400 text-4xl font-bold text-center mt-12">
+  //         <Spinner size={"xl"} fontSize={"50px"} />
+  //       </h2>
+  //     </div>
+  //   </div>;
+  // }
 
-  if (profile && profile?.role !== "admin") {
-    return (
-      <div className="bg-blue-200 !h-screen w-full fixed top-0 flex justify-center items-center z-50">
-        <h1 className="font-cutiveMono text-3xl">
-          Sorry You Are Not Admin {profile?.role}
-        </h1>
-      </div>
-    );
-  }
+  // if (profile && profile?.role !== "admin") {
+  //   return (
+  //     <div className="bg-blue-200 !h-screen w-full fixed top-0 flex justify-center items-center z-50">
+  //       <h1 className="font-cutiveMono text-3xl">
+  //         Sorry You Are Not Admin {profile?.role}
+  //       </h1>
+  //     </div>
+  //   );
+  // }
 
 
-  if (profile === null) {
-    return (
-      <>
-      <Loader/>
+  // if (profile === null) {
+  //   return (
+  //     <>
+  //     <Loader/>
       
-      </>
+  //     </>
    
-    );
-  }
+  //   );
+  // }
 
 
  
 
   return (
+    <>
+
+{!isAdmin ?  <PinCode/> :
+
     <>
       <div className="lg:sticky  lg:top-8 mt-12 mb-6 ml-4 flex flex-row gap-2">
         {/* <AiOutlineUser className="text-3xl" /> */}
@@ -156,6 +161,8 @@ if(!isLoggeed)
         </div>
         <div className="grow">{children}</div>
       </div>
+    </>
+}
     </>
   );
 };
