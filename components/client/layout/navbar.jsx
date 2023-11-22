@@ -76,6 +76,7 @@ const Navbar = () => {
     
     }
       >
+        {/* list of Links--- */}
         <div className="flex flex-wrap gap-8">
           <div className="z-10 max-w-[80px] rounded-lg p-4 pr-0">
             <Link href="/">
@@ -88,7 +89,7 @@ const Navbar = () => {
           </div>
           <div
             style={{ top: open ? '100%' : '-600%' }}
-            className="absolute left-0 top-full flex w-full items-center justify-end lg:relative lg:top-auto lg:w-auto"
+            className="absolute transition-all    duration-500 left-0 top-full flex w-full items-center justify-end lg:relative lg:top-auto lg:w-auto"
           >
             <ul className="box-shadow-hover z-[500] m-0 flex w-full flex-col items-center gap-1 border bg-white py-8 font-sora text-sm font-medium lg:right-auto lg:z-auto lg:w-auto lg:flex-row lg:rounded-2xl lg:border-none lg:bg-transparent lg:px-2 lg:py-1.5 lg:shadow-none">
               <li className="w-full px-6 py-1 lg:w-auto lg:py-0 lg:px-0">
@@ -158,6 +159,10 @@ const Navbar = () => {
             </ul>
           </div>
         </div>
+
+
+
+{/* ---Right Side--- */}
         <div className="flex flex-row flex-wrap">
           {profile ? (
             //create a dropdown
@@ -178,7 +183,7 @@ const Navbar = () => {
                       : 'scale(.8) translateY(-10px)',
                     visibility: dropdown2 ? 'visible' : 'hidden',
                   }}
-                  className="absolute top-[125%] -left-24 z-[101] flex origin-top scale-75 flex-col rounded-xl border bg-white shadow-xl duration-200 md:left-auto md:right-0"
+                  className="absolute  top-[125%] -left-24 z-[101] flex origin-top scale-75 flex-col rounded-xl border bg-white shadow-xl duration-200 md:left-auto md:right-0"
                 >
                   <div className="border-b border-b-gray-200 px-4 py-4 pr-12 text-sm">
                     <p>
@@ -225,6 +230,9 @@ const Navbar = () => {
             </div>
           </a>
         </div>
+
+
+        {/* ----Hamburger Menu--- */}
         <div
           onClick={toggleMenu}
           className="group/menu block h-auto max-w-[50px] cursor-pointer pr-3 lg:hidden"
