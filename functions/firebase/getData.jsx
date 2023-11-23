@@ -47,6 +47,7 @@ function postToJSON(doc) {
 // query and limmit is params
 export const getDocuments = async (col, querydata = null, limit = null) => {
   const queryConstraints = [];
+  console.log('D' + querydata)
   // query here is value from function {price === 200} or {name === adidas} ....
   if (querydata !== null) queryConstraints.push(where(...querydata));
   if (limit !== null) queryConstraints.push(limit(limit));

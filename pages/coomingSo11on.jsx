@@ -1,4 +1,5 @@
 import { useState ,useEffect } from "react";
+import { FaChampagneGlasses } from "react-icons/fa6";
 
 const Countdown = ({
  
@@ -8,8 +9,11 @@ const Countdown = ({
     const [primaryColor, setPrimaryColor] = useState("#061826");
     const [secondaryColor, setSecondaryColor] = useState("#2C4053");
     const [textColor, setTextColor] = useState("#ffffff");
-    const [startTime, setStartTime] = useState(Date.now() + 48 * 3600 * 1000);
-    const yesterdayDate = new Date(Date.now() - 24 * 3600 * 1000)
+    const [startTime, setStartTime] = useState(
+      //Date.now() + 48 * 3600 * 1000
+      1700927835420
+      );
+    console.log('setPrimaryColor' ,startTime)
     const [timeRemaining, setTimeRemaining] = useState(
         // dummy time remaining
         {
@@ -20,6 +24,8 @@ const Countdown = ({
         }
       );
 
+
+      
     const calculateTimeRemaining = () => {
         const timeRemaining = startTime - Date.now();
         // console.log(timeRemaining);
@@ -35,9 +41,12 @@ const Countdown = ({
       useEffect(() => {
         const interval = setInterval(() => {
           setTimeRemaining(calculateTimeRemaining());
+          console.log("Time remaining" + timeRemaining);
         }, 1000);
     
+    //    return interval
         return () => {
+          console.log("CLEAR TIME")
           clearInterval(interval);
         };
       }, [startTime]);
