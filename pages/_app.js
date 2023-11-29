@@ -15,6 +15,9 @@ export default function MyApp({ Component, pageProps }) {
 
 
     return (
+      <div className=' bg-white dark:bg-slate-800'>
+
+   
         
     <ChakraProvider>
     <StateContextProvider>
@@ -51,6 +54,7 @@ export default function MyApp({ Component, pageProps }) {
     <ToastContainer />
     </StateContextProvider>
     </ChakraProvider>
+    </div>
 
 )
 }

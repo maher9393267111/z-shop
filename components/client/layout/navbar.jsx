@@ -1,8 +1,10 @@
 import { ChevronRight, User, Cart } from "@/functions/icons";
+import { FaCartArrowDown } from "react-icons/fa";
 // import { default as Cart } from '@/assets/shopping-cart.js';
 
 import { useAuth } from "@/functions/context";
 import { getDocuments } from "@/functions/firebase/getData";
+
 // import { cn } from '@/lib/utils';
 // import CartModal from '@components/CartModal.js';
 // import logo from '@public/behide-logo-new.png';
@@ -11,6 +13,15 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useRef, useState } from "react";
 import StaggeringText from "./StaggeringText";
+import DarkModeButton from "./darkModeButton";
+
+import localFont from 'next/font/local';
+
+
+
+// const pokemon = localFont({ src: '../../../public/font2.ttf' })
+
+
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -48,6 +59,9 @@ const Navbar = () => {
     fetchData();
   }, []);
 
+
+
+
   const productCategory = [
     "Office Bag",
     "Backpack",
@@ -73,12 +87,24 @@ const Navbar = () => {
     setOpen(false);
   }, [router.asPath]);
 
+
+
+
+
+
   return (
     <>
+    <div className=
+     " !font-myfont CodeMirror"
+    //  {pokemon.className}
+    
+    >
+      About US
+    </div>
       <div
         ref={navbar}
         className={
-          "group/header header relative top-0 z-[500] flex w-full flex-row flex-wrap items-center justify-between py-3 px-3 text-black duration-150 lg:px-8 bg-white"
+          "group/header  bg-white dark:bg-slate-800  header relative top-0 z-[500] flex w-full flex-row flex-wrap items-center justify-between py-3 px-3 text-black duration-150 lg:px-8 bg-white"
           //     cn(
           //   'group/header header relative top-0 z-[500] flex w-full flex-row flex-wrap items-center justify-between py-3 px-3 text-black duration-150 lg:px-8',
           // )
@@ -104,10 +130,12 @@ const Navbar = () => {
             style={{ top: open ? "100%" : "-600%" }}
             className="absolute transition-all    duration-500 left-0 top-full flex w-full items-center justify-end lg:relative lg:top-auto lg:w-auto"
           >
-            <ul className="box-shadow-hover z-[500] m-0 flex w-full flex-col items-center gap-1 border bg-white py-8 font-sora text-sm font-medium lg:right-auto lg:z-auto lg:w-auto lg:flex-row lg:rounded-2xl lg:border-none lg:bg-transparent lg:px-2 lg:py-1.5 lg:shadow-none">
+            <ul className="box-shadow-hover z-[500] m-0 flex w-full flex-col items-center gap-1 dark:border-none border  dark:bg-slate-800 bg-white py-8 font-sora text-sm font-medium lg:right-auto lg:z-auto lg:w-auto lg:flex-row lg:rounded-2xl lg:border-none lg:bg-transparent lg:px-2 lg:py-1.5 lg:shadow-none">
               <li className="w-full px-6 py-1 lg:w-auto lg:py-0 lg:px-0">
                 <Link
-                  className="flex w-full items-center rounded-xl px-3 py-2 duration-200 ease-in-out hover:bg-green-50 hover:text-green-700 md:w-auto"
+                  className="flex w-full items-center rounded-xl px-3 py-2 duration-200 ease-in-out hover:bg-green-50 hover:text-green-700 md:w-auto
+                  dark:hover:text-green-700 dark:text-white  dark:hover:bg-white 
+                  "
                   href="/"
                 >
                   <StaggeringText text="home" />
@@ -116,7 +144,9 @@ const Navbar = () => {
               <li className="w-full px-6 py-1 lg:w-auto lg:py-0 lg:px-0">
                 <div
                   onClick={dropdownClick}
-                  className="relative flex w-full origin-top-left cursor-pointer items-center rounded-xl px-3 py-2 duration-200 hover:bg-green-50 hover:text-green-700 focus:stroke-green-700 focus:text-green-700 md:w-auto"
+                  className="relative flex w-full origin-top-left cursor-pointer items-center rounded-xl px-3 py-2 duration-200 hover:bg-green-50 hover:text-green-700 focus:stroke-green-700 focus:text-green-700 md:w-auto
+                  dark:hover:text-green-700 dark:text-white  dark:hover:bg-white 
+                  "
                 >
                   <div className="flex items-center justify-start sm:justify-center">
                     <StaggeringText text="category" />
@@ -128,6 +158,7 @@ const Navbar = () => {
                     />
                     <div className="relative inline-block">
                       <div
+                      	// ref={MenuRef}
                         style={{
                           opacity: dropdown ? 1 : 0,
                           transform: dropdown
@@ -150,18 +181,28 @@ const Navbar = () => {
 
                         })} */}
 
+                        <div
+                        
+                        
+                        >
+
+                        
+
  {cats.map((item, index) => {
                           return (
                             <Link
                               key={index}
                               href={`/products?category=${item.title.toLowerCase()}`}
-                              className="hover:text-brandBlack block transform rounded-lg px-4 py-2 text-xs font-normal capitalize text-black  duration-300 hover:bg-gray-200"
+                              className="hover:text-brandBlack block transform rounded-lg px-4 py-2 text-xs font-normal capitalize text-black  duration-300 hover:bg-gray-200 
+                              
+                              "
                             >
                               {item?.title}
                             </Link>
                           );
                         })}
 
+</div>
 
                       </div>
                     </div>
@@ -179,7 +220,7 @@ const Navbar = () => {
                     className="w-full px-6 py-1 lg:w-auto lg:py-0 lg:px-0"
                   >
                     <Link
-                      className="flex w-full items-center rounded-xl px-3 py-2 duration-200 hover:bg-green-50 hover:text-green-700 md:w-auto"
+                      className="flex w-full items-center rounded-xl px-3 py-2 duration-200 dark:hover:text-green-700 dark:text-white hover:bg-green-50 dark:hover:bg-white hover:text-green-700 md:w-auto"
                       href={item[1]}
                     >
                       {<StaggeringText text={item[0]} />}
@@ -199,7 +240,9 @@ const Navbar = () => {
               <div className="group relative">
                 <p
                   onClick={() => setDropdown2(!dropdown2)}
-                  className="relative z-[99] inline-block cursor-pointer select-none rounded-xl px-4 py-3 font-medium lowercase duration-150 hover:bg-green-50 hover:text-green-700 active:scale-95 active:bg-green-200"
+                  className="relative z-[99] inline-block cursor-pointer select-none rounded-xl px-4 py-3 font-medium lowercase duration-150 hover:bg-white dark:text-white 
+                  dark:hover:text-green-700
+                  hover:text-green-700 active:scale-95 dark:active:bg-green-700 active:bg-green-200"
                 >
                   <User className="-mt-1 inline-block w-5" />
                 </p>
@@ -251,15 +294,28 @@ const Navbar = () => {
               <User className="inline-block w-5 stroke-black" />
             </Link>
           )}
-          <a
-            onClick={() => setShowCart(true)}
-            className="relative inline-block cursor-pointer select-none rounded-xl px-4 py-3  text-black duration-150 hover:bg-gray-100 active:scale-90 active:bg-gray-200"
+
+          <DarkModeButton/>
+          {/* <p
+             onClick={() => setShowCart(true)}
+            className="relative inline-block cursor-pointer select-none rounded-xl px-4 py-3  text-black duration-150  active:bg-gray-200 hover:text-green-700 active:scale-95 dark:active:bg-green-700 "
           >
-            <Cart className="inline-block w-5 stroke-black" />
-            <div className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-gray-700 text-xs text-white">
+            <Cart className="inline-block w-5 stroke-black dark:text-green-700 " />
+            <h4 className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-gray-700 text-xs text-white">
               12
-            </div>
-          </a>
+            </h4>
+          </p> */}
+
+
+<p
+                  // onClick={() => setDropdown2(!dropdown2)}
+                  className="relative z-[99] inline-block cursor-pointer select-none rounded-xl px-4 py-3 font-medium lowercase duration-150 hover:bg-white dark:text-white 
+                  dark:hover:text-green-700
+                  hover:text-green-700 active:scale-95 dark:active:bg-green-700 active:bg-green-200"
+                >
+                  <FaCartArrowDown className="-mt-1 inline-block w-5" />
+                  {/* <Cart className="-mt-1 inline-block w-5" /> */}
+                </p>
         </div>
 
         {/* ----Hamburger Menu--- */}

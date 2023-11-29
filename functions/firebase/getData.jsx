@@ -20,6 +20,39 @@ import {
   uploadBytes,
 } from "firebase/storage";
 import { message } from "antd";
+
+
+export const getDocumentsOrder =async(doc, criterions ,search =null)=> {
+
+let q = null
+if (search ===null) {
+   q = query(collection(db, doc), criterions );
+}
+
+else {
+ q = query(collection(db, doc), criterions ,search);
+}
+
+
+  const querySnapshot = await getDocs(q);
+  const data = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+  }));
+  return data;
+  
+}
+
+
+
+
+
+
+
+
+
+
+
 // import { v4 as uuidv4 } from 'uuid';
 
 //step-1- get number of documents in one Collection
@@ -150,6 +183,7 @@ export const uploadImages = async (
 
     // retrive image from firebase/storage
     const url = await getDownloadURL(res.ref);
+    message.success("Image retrieved from firebase storage")
 
     return url;
   } else {

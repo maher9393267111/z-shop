@@ -27,8 +27,8 @@ const AddCategoryMain = ({ products }) => {
     }
 
     else {
-    values.images = await uploadImages(file ,true ,'cats');
-
+    values.image = await uploadImages(file ,true ,'cats');
+message.success(values.image)
     await addDoc(collection(db, "cats"), values);
 
     message.success(`Category Uploaded Successfully`);

@@ -105,10 +105,10 @@ const CategoryForm = ({
 
           {image && (
             <div className="  w-24 md:w-24 relative">
-              <img className=" w-24 h-24  rounded-lg" src={images} alt="" />
+              <img className=" w-24 h-24  rounded-lg" src={image} alt="" />
 
               <p
-                onClick={() => setImages("")}
+                onClick={() => setImage("")}
                 className="  !text-red-500 cursor-pointer text-white font-semibold text-center"
               >
                 Remove

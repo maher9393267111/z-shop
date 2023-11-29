@@ -14,7 +14,7 @@ const UpdateCategorytMain = ({ category }) => {
   const { query, replace } = useRouter();
   const { id } = query;
   //const [product, setProduct] = useState(null);
-  const [files, setFiles] = useState("");
+  const [file, setFile] = useState("");
 
   const isupdate = true;
   const { setPageLoading, pageLoading } = useAuth();
@@ -30,16 +30,16 @@ const UpdateCategorytMain = ({ category }) => {
       // delete image
       console.log("delete image", values);
 
-      if ( !files && !values.images )
+      if ( !file && !values.image )
       {
         message.error("images not found and No files Selected")
         return 
       }
 
-      if (files) {
+      if (file) {
         message.error("delete image old" )
-      await deleteImage(initialValues.images);
-         values.images = await uploadImages(files, true, "cats");
+      await deleteImage(initialValues.image);
+         values.image = await uploadImages(file, true, "cats");
       //  return
       }
 
@@ -59,7 +59,7 @@ const UpdateCategorytMain = ({ category }) => {
   return (
     <AdminLayout>
       <CategoryForm
-        {...{ initialValues, files, setFiles, isupdate, onFinish }}
+        {...{ initialValues, file, setFile, isupdate, onFinish }}
       />
     </AdminLayout>
   );

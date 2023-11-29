@@ -4,7 +4,7 @@ import { message } from "antd";
 import { useAuth } from "@/functions/context";
 import { useState } from "react";
 import { db } from "@/functions/firebase";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection , serverTimestamp } from "firebase/firestore";
 import { uploadImages, deleteImages } from "@/functions/firebase/getData";
 import AdminLayout from "../AdminLayout";
 const AddProductMain = ({ cats, subcats }) => {
@@ -24,6 +24,7 @@ const AddProductMain = ({ cats, subcats }) => {
         message.success("video uploaded successfully");
       }
 
+      values.timestamp =  serverTimestamp();
       await addDoc(collection(db, "products"), values);
       message.success("Product Added Successfully");
     } catch (error) {
