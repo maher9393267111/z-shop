@@ -1,11 +1,13 @@
 import React from 'react';
 import { ChevronIcon } from '../../../../functions/icons';
-
+import { motion } from "framer-motion"
 export default function CustomSlideArrow({ direction, onClick }) {
   return (
-    <button
-      className={`absolute  top-1/2 z-10 ${
-        direction === 'next' ? '-right-8' : '-left-8'
+    <motion.button
+
+     
+      className={`absolute  top-1/2 z-10     ${
+        direction === 'next' ? '-right-3  hover:scale-150  transition-all duration-150' : '-left-3  hover:scale-150  transition-all duration-150'
       }`}
       style={{
         transform: direction === 'next' ? 'rotate(180deg)' : '',
@@ -14,7 +16,7 @@ export default function CustomSlideArrow({ direction, onClick }) {
       disabled={!onClick}
     >
       <ChevronIcon color={'green'} />
-    </button>
+    </motion.button>
   )
 
     }

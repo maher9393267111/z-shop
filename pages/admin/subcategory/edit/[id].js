@@ -1,10 +1,10 @@
 import React from 'react';
 import  UpdateSubCategoryMain from '@/components/admin/subCategory/updateSubCategory';
 import { getDocuments ,getDocument } from '@/functions/firebase/getData';
-const EditSubPage = ({cats ,subcat}) => {
+const EditSubPage = ({cats ,subcats}) => {
     return (
         <div>
-            <UpdateSubCategoryMain cats={cats} subcat={subcat}/>
+            <UpdateSubCategoryMain cats={cats} subcats={subcats}/>
         </div>
     );
 }
@@ -24,6 +24,6 @@ EditSubPage.getInitialProps = async (context) => {
     return {
       // props from serverside will go to props in clientside
       cats: Categories,
-      subcat: subcat
+      subcats: subcat
     };
   };

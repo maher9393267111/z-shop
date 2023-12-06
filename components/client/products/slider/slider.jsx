@@ -1,20 +1,20 @@
-import React from 'react';
-import Slider from 'react-slick';
+import React from "react";
+import Slider from "react-slick";
 
-import  Card from './card';
-import  CustomSlideArrow  from './CustomSlideArrow';
+import Card from "./card";
+import CustomSlideArrow from "./CustomSlideArrow";
 
-import 'slick-carousel/slick/slick-theme.css';
-import 'slick-carousel/slick/slick.css';
+import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
 
-const BrowseCategoriesSlide = ({ data }) => {
+const BrowseCategoriesSlide = ({ data ,linktext  }) => {
   const setting = {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: data?.length > 2 ? 3 : 1,
     slidesToScroll: 1,
-    className:"relative max-w-[90%] ",
+    className: "relative mx-w-[80%]    md:max-w-[60%] mx-auto py-12 my-12 h-auto     ",
     nextArrow: <CustomSlideArrow direction="next" />,
     prevArrow: <CustomSlideArrow />,
     responsive: [
@@ -25,18 +25,18 @@ const BrowseCategoriesSlide = ({ data }) => {
           slidesToShow: 1,
           slidesToScroll: 1,
           arrows: false,
-          centerPadding: '72px',
+          centerPadding: "72px",
+          arrows: true,
         },
       },
       {
         // max width
-        breakpoint: 700,
+        breakpoint: 1100,
         settings: {
-          slidesToShow: 3,
-          initialSlide: 3,
-          slidesToScroll: 3,
+          slidesToShow: data?.length > 3 ? 2 : 1,
+          initialSlide: 1,
+          slidesToScroll: 1,
           arrows: true,
-          
         },
       },
     ],
@@ -44,13 +44,12 @@ const BrowseCategoriesSlide = ({ data }) => {
   return (
     <div>
       <Slider {...setting}>
-        {data?.map((category) => (
-          <Card category={category} key={category?.id} />
+        {data?.map((item) => (
+          <Card item={item} key={item?.id} linktext={linktext } />
         ))}
       </Slider>
     </div>
   );
 };
 
-
-export default  BrowseCategoriesSlide
+export default BrowseCategoriesSlide;

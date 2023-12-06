@@ -42,3 +42,23 @@ div.CodeMirror {
     backdrop-filter: blur(20px);
     background-image: radial-gradient(rgba(0, 0, 0, 0.09) 1px, #fff 1px);
   } */
+
+
+  .products-heading {
+    margin: 0;
+    margin-bottom: 50px;
+    padding: 0;
+    color: #26428B;
+    /* font-weight: 700; */
+    font-size: 2.2em;
+    /* line-height: 1.2; */
+    width: 100%;
+    text-align: center;
+}
+
+.products-heading p {
+    padding: 0;
+    margin: 0;
+    display: inline-flex;
+    transition: all .10s;
+}

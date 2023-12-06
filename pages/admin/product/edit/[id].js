@@ -18,7 +18,7 @@ export default EditSubPage;
 // serverside
 EditSubPage.getInitialProps = async (context) => {
     const Categories = await getDocuments("cats"); //  []
-    const SubCategories = await getDocuments("cats"); //  []
+    const SubCategories = await getDocuments("subcats"); //  []
     console.log("queyyy", context.query.id);
 
 

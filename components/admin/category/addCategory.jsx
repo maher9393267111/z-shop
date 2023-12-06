@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { useAuth } from "@/functions/context";
 import { useState } from "react";
 import { db } from "@/functions/firebase";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection ,serverTimestamp } from "firebase/firestore";
 import { uploadImages } from "@/functions/firebase/getData";
 import { message } from "antd";
 import AdminLayout from "../AdminLayout";
@@ -21,6 +21,8 @@ const AddCategoryMain = ({ products }) => {
 
     ////urls [array of images]
 
+
+
     if(!file) {
       message.error("Please select images")
       return;
@@ -28,6 +30,7 @@ const AddCategoryMain = ({ products }) => {
 
     else {
     values.image = await uploadImages(file ,true ,'cats');
+    values.timeStamp = serverTimestamp()
 message.success(values.image)
     await addDoc(collection(db, "cats"), values);
 

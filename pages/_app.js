@@ -1,5 +1,6 @@
 import { ChakraProvider } from '@chakra-ui/react'
 import { useRouter } from 'next/router';
+import {useState ,useEffect} from 'react'
 import '../styles/globals.css'
 
 import { AnimatePresence, motion } from "framer-motion";
@@ -9,9 +10,27 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { StateContextProvider } from '@/functions/context'
 
+
 export default function MyApp({ Component, pageProps }) {
 
     const { route, asPath } = useRouter();
+
+
+    useEffect(() => {
+      if('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+          navigator.serviceWorker.register('/service-worker.js').then(
+            function (registration) {
+              console.log('Service Worker registration successful with scope: ', registration.scope)
+            },
+            function (err) {
+              console.error('Service Worker registration failed: ', err)
+            }
+          )
+        })
+      }
+    }, [])
+
 
 
     return (
@@ -31,17 +50,17 @@ export default function MyApp({ Component, pageProps }) {
         >
 
 <motion.div
-                  key={route}
-                    className={' !min-h-[100vh] '}
-                  initial={{ opacity: 1 , x: -200}}
-                  animate={{ opacity: 1 ,x: 0  }}
-                  // exit={{ opacity: 0 ,x: -100 }}
-                  transition={{
-                    type: 'tween',
-                    ease: 'linear', 
-                    duration:0.8,
-                    delay: 0.1,
-                  }}
+                  // key={route}
+                  //   className={' !min-h-[100vh] '}
+                  // initial={{ opacity: 1 , x: -200}}
+                  // animate={{ opacity: 1 ,x: 0  }}
+                  // // exit={{ opacity: 0 ,x: -100 }}
+                  // transition={{
+                  //   type: 'tween',
+                  //   ease: 'linear', 
+                  //   duration:0.8,
+                  //   delay: 0.1,
+                  // }}
                 >
 
 
@@ -58,3 +77,4 @@ export default function MyApp({ Component, pageProps }) {
 
 )
 }
+
