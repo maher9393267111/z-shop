@@ -9,7 +9,7 @@ import { ToastContainer,toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 
 import { StateContextProvider } from '@/functions/context'
-
+import ProgressBar from '../components/common/progressBar'
 
 export default function MyApp({ Component, pageProps }) {
 
@@ -71,6 +71,7 @@ export default function MyApp({ Component, pageProps }) {
 </AnimatePresence>
 
     <ToastContainer />
+    <ProgressBar/>
     </StateContextProvider>
     </ChakraProvider>
     </div>

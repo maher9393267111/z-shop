@@ -202,3 +202,52 @@
 
 
 
+-------------------------
+
+ const [filteredInfo, setFilteredInfo] = useState({});
+  const [sortedInfo, setSortedInfo] = useState({});
+  const handleChange = (pagination, filters, sorter) => {
+    console.log('Various parameters', pagination, filters, sorter);
+    setFilteredInfo(filters);
+    setSortedInfo(sorter);
+  };
+  const clearFilters = () => {
+    setFilteredInfo({});
+  };
+  const clearAll = () => {
+    setFilteredInfo({});
+    setSortedInfo({});
+  };
+  const setAgeSort = () => {
+    setSortedInfo({
+      order: 'descend',
+      columnKey: 'age',
+    });
+  };
+
+
+
+  {
+      title: "Products",
+      // same name from database   // category={title ,....}
+      dataIndex: "title",
+
+      filters: [
+        {
+          text: 'Laptop',
+          value: 'Used Laptops',
+        },
+        {
+          text: 'Jim',
+          value: 'Jim',
+        },
+      ],
+      filteredValue:products.name || null,
+      onFilter: (value, record) => {
+        console.log('record' , record ,value)
+        record.name.includes(value)},
+      // sorter: (a, b) => a.name.length - b.name.length,
+      // sortOrder: sortedInfo.columnKey === 'name' ? sortedInfo.order : null,
+      ellipsis: true,
+
+    },
