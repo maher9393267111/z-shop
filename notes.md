@@ -251,3 +251,176 @@
       ellipsis: true,
 
     },
+
+    ------------------------------------------------------
+
+    slider Offer
+
+       {/* <div className=" grid grid-cols-1 lg:grid-cols-7 gap-4 mb-7 mx-4 md:mx-12 mt-12">
+        <div className=" lg:col-span-5 rounded-sm  ">
+          <OfferSlider />
+        </div>
+
+        <div className="lg:col-span-2 flex justify-center lg:grid lg:grid-cols-1 lg:place-items-center gap-2 w-full">
+          <div className=" mx-2  h-full  px-2 w-full">
+            <img 
+              className=" w-full !h-full object-cover object-center overflow-hidden"
+              src="https://i.pcmag.com/imagery/reviews/04jlYF4fsF2M5cejiU8lw7G-2.fit_lim.size_840x473.v1685028816.jpg"
+              alt=""
+            />
+          </div>
+
+          <div className="   mx-2 h-full px-2 w-full">
+            <img
+              className=" w-full !h-full object-cover object-center overflow-x-hidden"
+              src="https://i.pcmag.com/imagery/reviews/04jlYF4fsF2M5cejiU8lw7G-2.fit_lim.size_840x473.v1685028816.jpg"
+              alt=""
+            />
+          </div>
+        </div>
+      </div> */}
+
+
+      ------------------------------------------------------
+
+      offerslider index.js
+
+      import React from "react";
+import Carousel from "react-slick";
+import CustomSlideArrow from "../../products/slider/CustomSlideArrow";
+export default function OfferSliders() {
+  const settingsMainCarousel = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 4000,
+    nextArrow: <CustomSlideArrow direction="next" />,
+    prevArrow: <CustomSlideArrow />,
+  };
+
+  return (
+    <div className=" w-full h-full  mx-auto">
+      <Carousel {...settingsMainCarousel}>
+        <div className=" w-full md:h-full h-[300px] relative horizontal-loader">
+          <img
+            className=" opacity-[0.6] w-full !h-full object-cover object-center"
+            src="https://i.pcmag.com/imagery/reviews/04jlYF4fsF2M5cejiU8lw7G-2.fit_lim.size_840x473.v1685028816.jpg"
+            alt=""
+          />
+
+          <div className="   z-0 absolute  inset-0   text-3xl top-1/2  text-center  text-white ">
+            hello
+          </div>
+        </div>
+
+        <div className=" w-full md:h-full h-[300px] relative horizontal-loader">
+          <img
+            className=" opacity-[0.6] w-full !h-full object-cover object-center"
+            src="https://i.pcmag.com/imagery/reviews/04jlYF4fsF2M5cejiU8lw7G-2.fit_lim.size_840x473.v1685028816.jpg"
+            alt=""
+          />
+
+          <div className="   z-0 absolute  inset-0   text-3xl top-1/2  text-center  text-white ">
+            hello
+          </div>
+        </div>
+
+
+        <div className=" w-full md:h-full h-[300px] relative horizontal-loader">
+          <img
+            className=" opacity-[0.6] w-full !h-full object-cover object-center"
+            src="https://i.pcmag.com/imagery/reviews/04jlYF4fsF2M5cejiU8lw7G-2.fit_lim.size_840x473.v1685028816.jpg"
+            alt=""
+          />
+
+          <div className="   z-0 absolute  inset-0   text-3xl top-1/2  text-center  text-white ">
+            hello
+          </div>
+        </div>
+
+
+        <div className=" w-full md:h-full h-[300px] relative horizontal-loader">
+          <img
+            className=" opacity-[0.6] w-full !h-full object-cover object-center"
+            src="https://i.pcmag.com/imagery/reviews/04jlYF4fsF2M5cejiU8lw7G-2.fit_lim.size_840x473.v1685028816.jpg"
+            alt=""
+          />
+
+          <div className="   z-0 absolute  inset-0   text-3xl top-1/2  text-center  text-white ">
+            hello
+          </div>
+        </div>
+
+        <div className=" w-full md:h-full h-[300px] relative horizontal-loader">
+          <img
+            className=" opacity-[0.6] w-full !h-full object-cover object-center"
+            src="https://i.pcmag.com/imagery/reviews/04jlYF4fsF2M5cejiU8lw7G-2.fit_lim.size_840x473.v1685028816.jpg"
+            alt=""
+          />
+
+          <div className="   z-0 absolute  inset-0   text-3xl top-1/2  text-center  text-white ">
+            hello
+          </div>
+        </div>
+
+
+
+
+      </Carousel>
+    </div>
+  );
+}
+
+
+------------------------------------
+
+<!-- SEARCH INPUT -->
+
+<div class="relative w-[99px] md:w-[130px]">
+  <input
+
+name='search'
+onKeyDown={(event) => {
+  if (event?.key === "Enter" && event.target.value) {
+    router.push("/?search=" + event.target.value);
+  }
+  if (!event.target.value && event?.key === "Enter") {
+    router.push("/");
+  }
+}}
+
+    className="appearance-none border-2 pl-10 border-gray-300 hover:border-gray-400 transition-colors rounded-md w-full py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:ring-green-600 focus:border-green-600 focus:shadow-outline"
+    id="username"
+    type="text"
+    placeholder="Search..."
+  />
+
+
+  <button className=" cursor-pointer  bg-green-300"   onClick={handleFind}>search</button>
+  <div className="absolute right-0 inset-y-0 flex items-center">
+  
+  </div>
+
+  <div className="absolute left-0 inset-y-0 flex items-center">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="h-6 w-6 ml-3 text-gray-400 hover:text-gray-500"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+      />
+    </svg>
+  </div>
+</div>
+
+
+---------------------------

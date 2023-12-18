@@ -4,6 +4,7 @@ import { FaCartArrowDown } from "react-icons/fa";
 
 import { useAuth } from "@/functions/context";
 import { getDocuments } from "@/functions/firebase/getData";
+import SearchInput from "./searchInput";
 
 // import { cn } from '@/lib/utils';
 // import CartModal from '@components/CartModal.js';
@@ -15,13 +16,11 @@ import React, { useEffect, useRef, useState } from "react";
 import StaggeringText from "./StaggeringText";
 import DarkModeButton from "./darkModeButton";
 
-import localFont from 'next/font/local';
-
+import localFont from "next/font/local";
+import { FaChampagneGlasses } from "react-icons/fa6";
 
 
 // const pokemon = localFont({ src: '../../../public/font2.ttf' })
-
-
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -59,9 +58,6 @@ const Navbar = () => {
     fetchData();
   }, []);
 
-
-
-
   const productCategory = [
     "Office Bag",
     "Backpack",
@@ -89,18 +85,22 @@ const Navbar = () => {
 
 
 
+ 
 
 
 
   return (
     <>
-    <div className=
-     " !font-myfont CodeMirror"
-    //  {pokemon.className}
-    
-    >
-      About US
-    </div>
+      {/* <div
+        className=" !font-myfont CodeMirror"
+          {pokemon.className}
+      >
+        About US
+      </div> */}
+
+
+
+
       <div
         ref={navbar}
         className={
@@ -158,7 +158,7 @@ const Navbar = () => {
                     />
                     <div className="relative inline-block">
                       <div
-                      	// ref={MenuRef}
+                        // ref={MenuRef}
                         style={{
                           opacity: dropdown ? 1 : 0,
                           transform: dropdown
@@ -181,29 +181,21 @@ const Navbar = () => {
 
                         })} */}
 
-                        <div
-                        
-                        
-                        >
-
-                        
-
- {cats.map((item, index) => {
-                          return (
-                            <Link
-                              key={index}
-                              href={`/products?category=${item.title.toLowerCase()}`}
-                              className="hover:text-brandBlack block transform rounded-lg px-4 py-2 text-xs font-normal capitalize text-black  duration-300 hover:bg-gray-200 
+                        <div>
+                          {cats.map((item, index) => {
+                            return (
+                              <Link
+                                key={index}
+                                href={`/products?category=${item.title.toLowerCase()}`}
+                                className="hover:text-brandBlack block transform rounded-lg px-4 py-2 text-xs font-normal capitalize text-black  duration-300 hover:bg-gray-200 
                               
                               "
-                            >
-                              {item?.title}
-                            </Link>
-                          );
-                        })}
-
-</div>
-
+                              >
+                                {item?.title}
+                              </Link>
+                            );
+                          })}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -233,7 +225,7 @@ const Navbar = () => {
         </div>
 
         {/* ---Right Side--- */}
-        <div className="flex flex-row flex-wrap">
+        <div className="flex flex-row flex-wrap items-center">
           {profile ? (
             //create a dropdown
             <>
@@ -295,7 +287,7 @@ const Navbar = () => {
             </Link>
           )}
 
-          <DarkModeButton/>
+          <DarkModeButton />
           {/* <p
              onClick={() => setShowCart(true)}
             className="relative inline-block cursor-pointer select-none rounded-xl px-4 py-3  text-black duration-150  active:bg-gray-200 hover:text-green-700 active:scale-95 dark:active:bg-green-700 "
@@ -306,17 +298,36 @@ const Navbar = () => {
             </h4>
           </p> */}
 
-
-<p
-                  // onClick={() => setDropdown2(!dropdown2)}
-                  className="relative z-[99] inline-block cursor-pointer select-none rounded-xl px-4 py-3 font-medium lowercase duration-150 hover:bg-white dark:text-white 
+          <p
+            // onClick={() => setDropdown2(!dropdown2)}
+            className="relative z-[99] inline-block cursor-pointer select-none rounded-xl px-4 py-3 font-medium lowercase duration-150 hover:bg-white dark:text-white 
                   dark:hover:text-green-700
                   hover:text-green-700 active:scale-95 dark:active:bg-green-700 active:bg-green-200"
-                >
-                  <FaCartArrowDown className="-mt-1 inline-block w-5" />
-                  {/* <Cart className="-mt-1 inline-block w-5" /> */}
-                </p>
+          >
+            <FaCartArrowDown className="-mt-1 inline-block w-5" />
+            {/* <Cart className="-mt-1 inline-block w-5" /> */}
+          </p>
+
+
+
+{/* -------Search Input ---- */}
+
+
+          <div>
+       
+
+<SearchInput/>
+
+
+          
         </div>
+
+
+
+        </div>
+     
+
+
 
         {/* ----Hamburger Menu--- */}
         <div

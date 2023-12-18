@@ -1,46 +1,46 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
-body{
-  overflow-x: hidden;
+@layer utilities {
+  .container {
+    @apply mx-12 px-2;
+  }
 }
 
 
+body {
+  overflow-x: hidden;
+}
+
 @font-face {
-  font-family:DroidSansMono;
-  src:url('../public/font2.ttf');
-  }
+  font-family: DroidSansMono;
+  src: url("../public/font2.ttf");
+}
 
 div.CodeMirror {
-  height:100%;
-  background:#fff;
-  color:#222;
-  padding:0px;
-  margin:0px;
-  font:12px/55px DroidSansMono;
+  height: 100%;
+  background: #fff;
+  color: #222;
+  padding: 0px;
+  margin: 0px;
+  font: 12px/55px DroidSansMono;
   font-size: 44px;
-  }
-
-
+}
 
 @layer utilities {
-    .box-shadow {
-      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0);
-    }
-    .box-shadow-hover {
-      box-shadow: 0px 100px 80px -5px rgba(0, 0, 0, 0.15);
-    }
- 
+  .box-shadow {
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0);
   }
-  
+  .box-shadow-hover {
+    box-shadow: 0px 100px 80px -5px rgba(0, 0, 0, 0.15);
+  }
+}
 
-  .navbar-sticky {
-    background-color: #fff;
-  }
-  
+.navbar-sticky {
+  background-color: #fff;
+}
+
 /* 
   .slide-bg {
     background-size: 14px 14px;
@@ -48,38 +48,31 @@ div.CodeMirror {
     background-image: radial-gradient(rgba(0, 0, 0, 0.09) 1px, #fff 1px);
   } */
 
-
-  .products-heading {
-    margin: 0;
-    margin-bottom: 50px;
-    padding: 0;
-    color: #26428B;
-    /* font-weight: 700; */
-    font-size: 2.2em;
-    /* line-height: 1.2; */
-    width: 100%;
-    text-align: center;
+.products-heading {
+  margin: 0;
+  margin-bottom: 50px;
+  padding: 0;
+  color: #26428b;
+  /* font-weight: 700; */
+  font-size: 2.2em;
+  /* line-height: 1.2; */
+  width: 100%;
+  text-align: center;
 }
 
 .products-heading p {
-    padding: 0;
-    margin: 0;
-    display: inline-flex;
-    transition: all .10s;
+  padding: 0;
+  margin: 0;
+  display: inline-flex;
+  transition: all 0.1s;
 }
 
-
-
-.horizontal-loader  {
-  
-  
+.horizontal-loader {
   background: linear-gradient(
     1deg,
-    /* #dc2626, */
-    /* #ea580c,
+    /* #dc2626, */ /* #ea580c,
     #ca8a04,
-    #16a34a, */
-    #2563eb,
+    #16a34a, */ #2563eb,
     #4f46e5,
     #7c3aed
   );
@@ -87,8 +80,7 @@ div.CodeMirror {
   /* height: 5px; */
   @apply rounded-xl rounded-tr-xl;
   animation: gradient 10s linear infinite;
-  
-  
+
   background-size: 250% 100%;
 }
 
@@ -99,4 +91,51 @@ div.CodeMirror {
   100% {
     background-position: 500%;
   }
+}
+
+/* .slick-dots li.slick-active button:before {
+  color: rgb(15, 52, 96) !important;
+  display: flex;
+  justify-content: center;
+  font-size: 12px !important;
+  align-items: center;
+  padding-top: 0;
+  padding-left: 0;
+}
+.slick-dots li button:before {
+  width: 18px !important;
+  height: 18px !important;
+  font-size: 16px !important;
+  color: unset !important;
+  border: 1px solid rgb(15, 52, 96);
+  border-radius: 10px;
+  opacity: unset !important;
+} */
+
+
+
+
+.slick-dots li.slick-active button:before {
+  color: #1520ed !important;
+  /* display: flex; */
+  justify-content: center;
+  font-size: 16px !important;
+  align-items: center;
+  padding-top: 0;
+  padding-left: 0;
+  opacity: 1 !important;
+}
+.slick-dots li button:before {
+  width: 18px !important;
+  height: 18px !important;
+  font-size: 16px !important;
+  color: #1520ed !important;
+  border: 1px solid rgb(15, 52, 96);
+  border-radius: 10px;
+  opacity: 0.5 !important;
+}
+
+
+.slick-dots {
+  transform: translateY(-44px);
 }

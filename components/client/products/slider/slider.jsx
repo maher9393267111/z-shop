@@ -4,8 +4,7 @@ import Slider from "react-slick";
 import Card from "./card";
 import CustomSlideArrow from "./CustomSlideArrow";
 
-import "slick-carousel/slick/slick-theme.css";
-import "slick-carousel/slick/slick.css";
+
 
 const BrowseCategoriesSlide = ({ data ,linktext  }) => {
   const setting = {

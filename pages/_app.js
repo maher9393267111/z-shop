@@ -10,6 +10,8 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { StateContextProvider } from '@/functions/context'
 import ProgressBar from '../components/common/progressBar'
+import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
 
 export default function MyApp({ Component, pageProps }) {
 

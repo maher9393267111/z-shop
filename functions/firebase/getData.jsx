@@ -22,12 +22,55 @@ import {
 import { message } from "antd";
 
 
-export const getDocumentsOrder =async(doc, criterions ,search =null)=> {
+
+export async function fetchOfferProducrts() {
+  try {
+    // get reference
+    const listingRef = collection(db, "products");
+    // create query
+    const q = query(
+      listingRef,
+      where("isoffer", "==", true),
+      // orderBy('title' ,"desc") ,
+      //  orderBy("timeStamp", "asc"),
+      
+      // limit(4)
+    );
+    // execute query
+    const querySnap = await getDocs(q);
+    const listings = [];
+
+    querySnap.forEach((doc) => {
+    
+      return listings.push({
+        id: doc.id,
+        data: doc.data(),
+      });
+    });
+    return listings
+  
+  } catch (error) {
+    console.log("there is something wrong with the request", error);
+  }
+}
+
+
+
+
+
+export const getDocumentsOrder =async(doc, criterions ,search =null , isoffer =null)=> {
 
 let q = null
 if (search ===null) {
    q = query(collection(db, doc), criterions );
 }
+
+// else if (isoffer !== null) 
+// {
+//   q = query(collection(db, doc), criterions ,where("isoffer", "==", true));
+
+// }
+
 
 else {
  q = query(collection(db, doc), criterions ,search);
@@ -156,6 +199,7 @@ export const handleDeleteGloball = (col, item) => {
 // ------------------------
 
 import { v4 as uuidv4 } from "uuid";
+import { FaChampagneGlasses } from "react-icons/fa6";
 // export const uploadImages = async (files) => {
 //   const urls = [];
 //   await Promise.all(
